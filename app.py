@@ -207,7 +207,7 @@ if submitted and industry:
                 with cols[1]:
                     st.markdown("**References**")
                     for cit in usecase.citations:
-                        source = next((s for s in content if s.id == cit), None)
+                        source = next((s for s in content if s.id == cit - 1), None)
                         if source:
                             st.markdown(f"- [Source {cit}]({source.url})")
                     
