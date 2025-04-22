@@ -51,31 +51,80 @@ model = ChatMistralAI(model="mistral-small-latest", temperature=0)
 
 
 RESEARCH_INDUSTRY_PROMPT = """
-You are an expert at identifying relevant industries given a company name or industry name.
-Generate a list of search queries that will gather key focus areas for the company or industry (e.g., operations, supply chain, customer experience, etc.)
-Different products related to the industry or company should also be included.
-Generate a list of search queries that will gather any relevant information.
-Only generate 3 queries max.
+You are an expert in market and industry research.
+
+Given a company or industry name, generate 3 highly specific and relevant search queries that will help uncover:
+- The company/industry’s key focus areas (e.g., operations, innovation, supply chain, customer experience)
+- Products or services related to the company/industry
+
+Guidelines:
+- Use domain-specific language
+- Avoid generic phrases
+- Include diverse business angles if possible
+
+Example (for Tesla):
+1. Tesla energy storage solutions 2024 overview
+2. Tesla customer satisfaction in EV sector
+3. Tesla gigafactory supply chain logistics
+
+Now, generate 3 search queries for the given input.
+
 
 """
 
 RESEARCH_AI_USECASES_PROMPT = """
-You are an expert in finding loopholes in various industries which can be resolved by Artificial Intelligence (AI), Machine Learning (ML) and Automation.
-Refer to reports and insights on AI and digital transformation from industry-specific sources to find potential solutions.
-It could improve efficiency, solve problems and innvoate. Generate a list of search queries that will gather any relevant information given the data. A
-Only generate 5 queries max.
+You are an expert in identifying inefficiencies, gaps, or untapped opportunities across industries that can be addressed using Artificial Intelligence (AI), Machine Learning (ML), or Automation.
+
+Your task is to generate a list of 5 precise and relevant search queries that will help uncover:
+- Industry-specific pain points or inefficiencies
+- Opportunities for AI/ML/automation-driven transformation
+- Case studies, digital transformation reports, or expert insights
+
+Use domain-relevant language, and ensure queries explore how AI can improve processes, reduce costs, or drive innovation.
+
+Example (for logistics industry):
+1. AI in last-mile delivery optimization 2024
+2. Warehouse automation trends logistics industry
+3. Machine learning for demand forecasting in supply chain
+4. Digital transformation case studies logistics 2023
+5. Operational bottlenecks solved by AI logistics
+
+Now, generate 5 search queries based on the given industry or business domain.
+
 
 """
 
 WRITER_PROMPT = """
-You are an AI expert who can identify areas usecases of Artificial Intelligence (AI), Machine Learning (ML) and Automation in a given company/industry.
-You are given data on possible usecases in a specific industry. Identify the best top 3 usecases and provide details for each including the problem and it's solution using AI, ML or automation. Do not explicitly use the word problem and solution. Write a paragraph for each usecase.
+You are an expert in Artificial Intelligence (AI), Machine Learning (ML), and Automation, skilled at identifying impactful use cases within specific industries or companies.
+
+You are provided with data describing potential AI/ML/automation applications in a given industry. From this, select the three most promising or transformative use cases.
+
+For each use case, write one clear, well-structured paragraph that:
+- Describes the context or challenge being addressed (without using the word "problem")
+- Explains how AI, ML, or automation is applied
+- Highlights the potential value or outcome
+
+Do not use labels like “Problem” or “Solution.” Just write three coherent paragraphs, one per use case.
+
 """
 
 RESEARCH_DATASETS_FOR_USECASES_PROMPT = """
-You are an expert at searching relevant datasets/ databases or relevant projects for a solving problem or usecase, which can be used for AI, ML and automation.
-Generate a list of search queries that will gather any relevant information to this.
-Only generate 3 queries max.
+You are an expert in finding relevant datasets, databases, and related AI/ML/automation projects that support solving specific problems or implementing use cases.
+
+Your task is to generate up to 3 well-formed search queries that will help discover:
+- Datasets suitable for training or evaluating models
+- Open-source projects or research initiatives related to the use case
+- Domain-specific resources (e.g., finance, healthcare, logistics, etc.)
+
+Use precise technical language and include keywords that reflect the use case’s domain, objective, or data type.
+
+Example (for fraud detection in finance):
+1. Financial transaction fraud detection benchmark datasets
+2. Open-source projects on anomaly detection in banking
+3. Real-world datasets for supervised learning in fraud analytics
+
+Now, generate 3 search queries for the given use case.
+
 """
 
 
