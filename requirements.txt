@@ -3,4 +3,4 @@ streamlit
 tavily-python
 langgraph
 langgraph-checkpoint-sqlite
-langchain_mistralai
+langchain-google-genai
