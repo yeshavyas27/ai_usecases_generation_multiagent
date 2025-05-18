@@ -474,6 +474,7 @@ def setup_graph():
     builder.add_edge("improve_usecases","review_usecases" )
     
     return builder.compile(checkpointer=memory)
+
 mapper = {"Industry": False, "Company": True}
 # Streamlit UI
 st.set_page_config(page_title="AI Usecases Researcher", layout="wide")
@@ -485,7 +486,6 @@ with st.form("main_form"):
                            placeholder="E.g., 'Healthcare' or 'Tesla'")
     input_type = st.selectbox("Is this a company or an industry?", 
                               options=["Industry", "Company"])
-    st.write(f"The user chose {input_type}")
     submitted = st.form_submit_button("Analyze")
 
 if submitted and user_input:
