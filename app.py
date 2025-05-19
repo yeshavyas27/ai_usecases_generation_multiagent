@@ -114,7 +114,7 @@ Write one paragraph per use case. Reason and only pick the usecases which are mo
 """
 
 REVIEWER_PROMPT = """
-You are an expert reviewer who rates the relevancy of an ai usecase to the industry,it's sources and it's feasiblity given information about assets. You are given:
+You are an expert reviewer who rates the relevancy of an AI usecase to the industry, its sources, and its feasibility given information about assets. You are given:
 
 - `AI Usecase`: A proposed AI use case for a specific industry.
 - `References Content`: Background content from which this use case may have been derived.
@@ -134,99 +134,142 @@ Your task is to **critically assess** the use case across **three dimensions**:
 
 Provide scores for each dimension, a brief justification, and calculate the **total score out of 20**. Then, offer **critical feedback and suggestions for improvement**.
 
----
+## EXAMPLE 1: LOW SCORE (Specialty Food Manufacturing)
 
-**Example 1: High-Score Use Case (18/20)**
-Related Industries: Agriculture, Food Safety, Environmental Science
-AI Use Case:
-Predicting crop contamination from soil sensors and satellite imagery using CNN models. Detects early signs of heavy metal absorption in leafy greens, alerts farmers pre-harvest, and integrates with irrigation systems to flush toxins.
+AI Usecase: An AI system that analyzes social media trends to predict future flavor preferences for artisanal cheese production, automatically adjusting milk fermentation parameters and aging conditions to optimize for anticipated consumer taste preferences six months in advance.
 
-Reference Content:
-- FAO 2024 report on $12B annual losses from crop contamination
-- EU Regulation 2023/1945 mandating real-time soil monitoring
-- Case study: Walmart's blockchain system for produce traceability
+References Content: 
+The specialty cheese market is growing at 3.5% annually, with increasing consumer interest in artisanal products. Traditional cheese production relies on master cheesemakers who make decisions based on experience and sensory evaluation. Temperature control systems for cheese aging have seen technological improvements, with IoT sensors becoming more common in aging caves. Some large dairy processors are exploring data analytics for quality control in commodity cheese production.
 
-Assets Content:
-- USDA's 10TB OpenAgData repository
-- Pretrained ResNet-50 on PlantVillage dataset
-- AgriOS farm management API
+Assets Content: 
+OpenFoodFacts dataset containing nutritional information for packaged foods; TensorFlow implementation of sentiment analysis for product reviews; GitHub repository with basic time series forecasting models for agricultural commodities.
 
-1. Industry Relevance: 9/10
-   Strongly aligned with food safety and environmental sustainability. Tangible ROI and regulatory impact.
+Related Industries: 'specialty food manufacturing', 'artisanal cheese production', 'dairy processing', 'food technology'
 
-2. Source Relatedness: 4/5
-   Well-supported by regulatory and economic sources, though blockchain link could be stronger.
+EVALUATION:
 
-3. Feasibility via Assets: 5/5
-   All components are available in the open-source ecosystem.
+Industry Relevance: 5/10
+While flavor innovation and production optimization are relevant to artisanal cheese manufacturing, the proposed predictive social media analysis for automated fermentation control misunderstands fundamental aspects of the industry. Artisanal cheese production values traditional methods and cheesemaker expertise. The six-month prediction timeframe is problematic given cheese aging varies from weeks to years, and the direct correlation between social media trends and successful cheese flavor profiles is unproven in this craft-focused segment.
 
-**Total Score: 18/20**
-**Feedback:** Add traceability integration using blockchain frameworks. Consider deploying through AgriOS-compatible IoT devices.
+Source Relatedness: 2/5
+The references mention growth in the specialty cheese market and some technology adoption for temperature monitoring, but nothing supports the core premise of social media trend analysis for cheese production. The references actually emphasize traditional production methods and the role of master cheesemakers, contradicting the fully automated approach proposed.
 
----
+Feasibility via Assets: 1/5
+The provided assets are severely misaligned with the proposed use case. OpenFoodFacts contains nutritional data but not production parameters or flavor profiles. The sentiment analysis model isn't designed for predictive flavor trends. The time series forecasting for agricultural commodities focuses on pricing/supply predictions, not consumer taste preferences. None of the assets address fermentation parameter control systems.
 
-**Example 2: Medium-Score Use Case (12/20)**
-Related Industries: Retail, Urban Planning, Transportation
-AI Use Case:
-Optimizing last-mile delivery by analyzing social media posts to predict package receipt likelihood.
+Total Score: 8/20
 
-Reference Content:
-- McKinsey report on $18B losses in last-mile logistics
-- Singapore's Smart City Mobility Index
-- FTC guidelines on data privacy
+Feedback: This use case demonstrates a fundamental misalignment with industry realities and available assets. Artisanal cheese production is inherently craft-based, and the value proposition centers on traditional methods and expert knowledge. A more feasible approach would be an AI system that supports (rather than replaces) master cheesemakers by providing insights on optimal aging conditions based on historical production data, or quality assessment tools that complement human expertise. The proposed assets are insufficient for implementation, requiring significant additional data collection specific to cheese production parameters and flavor development during aging.
+
+## EXAMPLE 2: MEDIUM SCORE (Precision Agricultural Equipment Manufacturing)
+
+AI Usecase: A computer vision system integrated into harvesting equipment that identifies crop diseases in real-time during harvest operations, providing immediate alerts to equipment operators and generating field maps of disease incidence. The system also adapts harvesting parameters (cutting height, speed) to maximize yield when processing affected areas, and tags potentially contaminated harvest batches for separate processing.
+
+References Content:
+Global precision agriculture equipment market projected to reach $12.8 billion by 2025, with smart equipment adoption growing at 14.2% annually. John Deere has invested $305 million in computer vision and machine learning for agricultural applications since 2017. Studies show early disease detection can reduce crop losses by 30-60%. Agricultural equipment manufacturers face increasing pressure to demonstrate sustainability metrics and reduce pesticide usage through targeted interventions. Computer vision has achieved 87-92% accuracy in identifying common crop diseases in controlled testing environments.
 
 Assets Content:
-- Geotagged Twitter dataset (1M posts)
-- OSRM routing engine
-- Anonymized UPS logs (2018–2020)
+PlantDisease-Net: An open-source dataset containing 50,000 labeled images of 38 crop diseases across 12 plant species with varied lighting and growth stage conditions. AgEquipment-SDK: A software development kit for interfacing with major agricultural equipment control systems, including APIs for adjusting harvester operational parameters. HarvestOptimizer: A reinforcement learning framework for optimizing harvesting operations based on crop conditions and equipment capabilities.
 
-1. Industry Relevance: 6/10
-   Addresses a real cost center, but approach is speculative and privacy-sensitive.
+Related Industries: 'precision agricultural equipment manufacturing', 'smart farming solutions', 'agricultural technology', 'harvest automation'
 
-2. Source Relatedness: 3/5
-   General logistics pain point covered; weak link to social signals.
+EVALUATION:
 
-3. Feasibility via Assets: 3/5
-   Data and tools exist, but real-time NLP pipelines are unproven for this task.
+Industry Relevance: 8/10
+The use case directly addresses significant industry challenges in precision agriculture equipment manufacturing. Real-time disease detection during harvest has clear economic value through reduced crop losses, improved processing decisions, and enhanced sustainability metrics. The integration of detection with automated harvester parameter adjustment aligns with market trends toward smarter equipment. However, it lacks consideration of the economic trade-offs of implementation costs versus benefits for specific crop types.
 
-**Total Score: 12/20**
-**Feedback:** Validate signal strength from social media. Start with offline pilots. Explore alternative customer behavior signals.
+Source Relatedness: 4/5
+The use case is well-grounded in the provided references, which confirm substantial investment in computer vision technology by major manufacturers, quantify the potential benefits of early disease detection, and establish technical feasibility with specific accuracy metrics. The references directly support the market demand and technological trajectory described in the use case.
 
----
+Feasibility via Assets: 3/5
+The PlantDisease-Net dataset provides a strong foundation for the computer vision component, though domain adaptation would be needed for real-time, in-field conditions during harvest. The AgEquipment-SDK offers practical paths to implementation for harvester parameter control. However, the HarvestOptimizer framework would require significant modification to incorporate disease detection as an input parameter for operational adjustments, and the system lacks assets addressing the segregation and tracking of potentially contaminated batches.
 
-**Example 3: Low-Score Use Case (7/20)**
-Related Industries: Aerospace, Automotive, Telecommunications
-AI Use Case:
-Using quantum reinforcement learning for autonomous drone swarms in 6G tower maintenance.
+Total Score: 15/20
 
-Reference Content:
-- Ericsson 6G whitepaper
-- FAA drone regulations (2025)
-- Tesla Bot v2 specs
+Feedback: This use case demonstrates strong alignment with industry needs and available references, with moderate feasibility given the assets. To improve, consider adding specific ROI calculations for different crop types and equipment scales to strengthen the business case. The technical implementation would benefit from addressing environmental variability (dust, lighting conditions during harvest) that could affect computer vision performance. Consider expanding the scope to include post-harvest data integration with farm management systems for long-term disease management strategies. Additional assets related to batch tracking and contamination management would strengthen the implementation pathway.
+
+## EXAMPLE 3: HIGH SCORE (Clinical Trial Management Software)
+
+AI Usecase: An AI-powered predictive analytics platform for clinical trial management that uses natural language processing to continuously analyze patient-reported outcomes, clinical notes, and physiological monitoring data to identify early warning signs of adverse events or trial protocol deviations. The system automatically stratifies risk levels, prioritizes patients for intervention, suggests protocol adjustments to clinical teams, and optimizes site monitoring resource allocation based on predicted risk factors.
+
+References Content:
+According to industry reports, 85% of clinical trials fail to retain enough patients, with adverse events being a primary reason for dropout. Patient monitoring in decentralized clinical trials increased by 50% during 2020-2022, generating 3x more data points per patient than traditional site-based trials. NLP techniques have demonstrated 92% accuracy in extracting adverse event information from unstructured clinical notes in controlled studies. Regulatory bodies including FDA and EMA have issued guidance supporting risk-based monitoring approaches that leverage predictive analytics. A meta-analysis of 230 failed clinical trials found that 40% could have been salvaged with earlier identification of protocol issues or patient risks.
 
 Assets Content:
-- OpenStreetMap 3D maps
-- Qiskit quantum framework
-- DJI Drone SDK
+MIMIC-IV-NLP: A de-identified clinical database containing 350,000+ patient notes with annotated adverse event mentions, medication effects, and symptom progressions from multiple therapeutic areas. ClinicalBERT: A domain-specific language model pre-trained on 2 million clinical documents with specific fine-tuning for adverse event recognition and medical entity extraction. TrialRisk-ML: An open-source machine learning framework specifically designed for time-series analysis of patient monitoring data with implementations of early warning prediction algorithms validated in oncology and cardiovascular trials. REDCap-Connect: API infrastructure for secure, compliant integration with common clinical trial electronic data capture systems.
 
-1. Industry Relevance: 3/10
-   Highly futuristic, minimal current industry alignment or readiness.
+Related Industries: 'clinical trial management software', 'pharmaceutical research technology', 'healthcare informatics', 'drug development platforms', 'regulatory technology for life sciences'
 
-2. Source Relatedness: 2/5
-   References speak to general trends, not the specific use case.
+EVALUATION:
 
-3. Feasibility via Assets: 2/5
-   Quantum RL is highly experimental; real-world readiness is low.
+Industry Relevance: 10/10
+This use case addresses critical pain points in clinical trial management with significant financial and patient safety implications. The focus on early detection of adverse events directly targets the 85% failure rate in patient retention noted in the references. The multi-modal approach combining patient-reported outcomes, clinical notes, and monitoring data aligns with the industry trend toward decentralized trials generating diverse data types. The risk stratification and resource optimization components address operational efficiency challenges faced by clinical trial managers working across multiple sites.
 
-**Total Score: 7/20**
-**Feedback:** Scope down to classical RL with single drones. Seek telecom partnerships for gradual validation.
+Source Relatedness: 5/5
+The use case is exceptionally well-grounded in the provided references. It directly applies the demonstrated 92% NLP accuracy for adverse event extraction, responds to the regulatory guidance supporting risk-based monitoring, and addresses the documented 40% of failed trials that could benefit from earlier risk identification. The approach leverages the 3x increase in patient data points noted in the references to enable the proposed predictive capabilities.
 
+Feasibility via Assets: 4/5
+The combination of assets forms a comprehensive foundation for implementation. MIMIC-IV-NLP provides the necessary training data for adverse event recognition. ClinicalBERT offers a domain-adapted language model specifically aligned with the NLP requirements. TrialRisk-ML directly supports the time-series analysis needed for monitoring data, with validation in relevant therapeutic areas. REDCap-Connect enables practical integration with existing clinical workflows. The only limitation is the potential need for additional assets addressing regulatory compliance workflows for suggested protocol adjustments.
+
+Total Score: 19/20
+
+Feedback: This use case demonstrates excellent alignment with industry needs, reference materials, and available assets. It addresses a high-value problem with clear ROI through improved patient retention and trial success rates. To further strengthen the implementation pathway, consider expanding the assets to include a regulatory workflow engine for managing the protocol adjustment suggestion process in compliance with GCP requirements. The system could also benefit from incorporating site-specific regulatory requirements for multi-region trials. Consider exploring federated learning approaches to address patient data privacy concerns while maintaining predictive power across trial sites.
+
+## EXAMPLE 4: MEDIUM-HIGH SCORE (Industrial HVAC Systems Manufacturing)
+
+AI Usecase: A predictive maintenance system for commercial HVAC systems that uses acoustic anomaly detection combined with thermal imaging analysis to identify failing components before complete breakdown. The system continuously monitors compressor and air handler sound signatures using edge-deployed deep learning models, correlates acoustic patterns with thermal imagery from periodic maintenance scans, and generates maintenance recommendations with specific component replacement forecasts and energy efficiency impact projections.
+
+References Content:
+Unplanned HVAC system downtime costs commercial building operators an average of $5,000-$50,000 per incident depending on facility type. Traditional maintenance schedules miss 30% of developing component failures. Energy consumption increases by 15-30% as components degrade prior to complete failure. Acoustic monitoring has shown 87% accuracy in detecting refrigerant leaks and compressor issues when tested in laboratory settings. Thermal imaging is currently used in 60% of commercial HVAC maintenance processes but typically only during scheduled maintenance visits rather than continuous monitoring.
+
+Assets Content:
+HVAC-SoundDB: A dataset containing 120,000 labeled audio samples of normal and abnormal operating sounds from 15 models of commercial HVAC systems across various load conditions. ThermalVisionPro: Computer vision models pre-trained on 50,000 thermal images of mechanical and electrical components with temperature anomaly detection capabilities. EnergyImpactCalculator: An analytics framework for projecting energy consumption impacts of component degradation based on historical performance data. BuildingIoT-Edge: Low-power edge computing framework optimized for continuous sensor monitoring in building systems with pre-built connectors to building management systems.
+
+Related Industries: 'industrial HVAC systems manufacturing', 'commercial building automation', 'facilities management technology', 'predictive maintenance systems'
+
+EVALUATION:
+
+Industry Relevance: 9/10
+The use case directly addresses significant pain points in commercial HVAC maintenance with clear financial implications. Preventing unplanned downtime ($5,000-$50,000 per incident) and reducing energy waste (15-30% from component degradation) presents a compelling value proposition. The combination of continuous acoustic monitoring with thermal imaging enhances existing maintenance practices rather than replacing them. The system aligns with industry trends toward condition-based maintenance and energy efficiency optimization in commercial buildings.
+
+Source Relatedness: 4/5
+The use case is well-grounded in the provided references, directly addressing the 30% of component failures missed by traditional maintenance and leveraging the demonstrated 87% accuracy of acoustic monitoring. The approach intelligently combines the periodic thermal imaging (currently used in 60% of maintenance processes) with continuous acoustic monitoring to create a more comprehensive solution than either method alone. However, the references don't specifically address the correlation between acoustic and thermal indicators, which is a key aspect of the proposed system.
+
+Feasibility via Assets: 4/5
+The assets provide a strong foundation for implementation. HVAC-SoundDB offers comprehensive training data for the acoustic models across various HVAC systems and conditions. ThermalVisionPro directly supports the thermal analysis component. The EnergyImpactCalculator enables the energy efficiency projections that enhance the business case. BuildingIoT-Edge addresses the critical implementation challenge of deploying models to existing building infrastructure. The primary limitation is the lack of assets specifically addressing the fusion of acoustic and thermal data for improved prediction accuracy.
+
+Total Score: 17/20
+
+Feedback: This use case demonstrates strong alignment with industry needs and available assets. The dual-modality approach combining acoustic and thermal analysis represents an innovative advancement beyond current maintenance practices. To strengthen the proposal, consider including validation methodology for the correlation between acoustic anomalies and thermal patterns, as this relationship isn't established in the references. The implementation would benefit from adding a feedback loop that incorporates actual maintenance findings to continuously improve prediction accuracy. Consider expanding the business case to quantify ROI based on facility type and size, since downtime costs vary significantly ($5,000-$50,000).
+
+## EXAMPLE 5: LOW-MEDIUM SCORE (Beauty E-commerce Platform)
+
+AI Usecase: A virtual makeup try-on system for beauty e-commerce that uses generative AI to create photorealistic simulations of how skincare products would affect a customer's skin over time with continued use. Customers upload a selfie and the system generates a timeline of expected results showing progressive improvements in skin texture, tone, and specific conditions like acne or hyperpigmentation at 2-week intervals over a 3-month projected usage period.
+
+References Content:
+Beauty e-commerce platforms experience 38% higher cart abandonment rates than other retail categories, with uncertainty about product effectiveness cited as a primary reason. Virtual makeup try-on technologies have increased conversion rates by 30% for color cosmetics but have shown limited impact for skincare products. Consumer surveys indicate 72% of skincare purchasers don't believe product claims about long-term benefits. The skincare segment represents 45% of beauty e-commerce revenue but only 15% of virtual try-on technology implementations. Clinical trials for skincare products typically measure results at 4, 8, and 12-week intervals.
+
+Assets Content:
+FaceMesh-AR: A 3D facial mapping technology that creates detailed skin topology maps from selfie images with texture and tone analysis. BeautyGAN: A generative adversarial network trained on before/after images from makeup application but not specifically optimized for skincare effects. ProductClaims-NLP: A natural language processing model that extracts measurable benefit claims from product descriptions. Clinical-Imaging-Small: A limited dataset of 500 before/after images from skincare clinical trials with controlled lighting and standardized photography.
+
+Related Industries: 'beauty e-commerce', 'virtual try-on technology', 'skincare product marketing', 'cosmetics retail platforms'
+
+EVALUATION:
+
+Industry Relevance: 7/10
+The use case addresses a significant pain point in beauty e-commerce - the high abandonment rate (38%) specifically linked to uncertainty about skincare product effectiveness. The focus on skincare rather than color cosmetics targets an underserved segment (45% of revenue but only 15% of virtual try-on implementations). The approach directly responds to consumer skepticism about long-term benefits (72% disbelief in claims). However, the use case assumes consumers' primary concern is visualizing long-term results, when immediate texture/feel and potential irritation might be equally important factors in purchase decisions.
+
+Source Relatedness: 3/5
+The use case builds on the referenced success of virtual try-on for color cosmetics (30% conversion increase) and attempts to extend this to skincare. The time intervals proposed (2-week increments over 3 months) generally align with the clinical trial measurement points mentioned (4, 8, and 12 weeks). However, the references don't provide evidence that visualizing progressive results would address the specific concerns causing cart abandonment for skincare products.
+
+Feasibility via Assets: 2/5
+The assets present significant limitations for implementing this use case. While FaceMesh-AR provides the necessary foundation for skin analysis, BeautyGAN is trained for makeup application rather than progressive skincare effects. The Clinical-Imaging-Small dataset (500 images) is vastly insufficient for training a generative model that can accurately predict personalized skincare results across diverse skin types, conditions, and product interactions. ProductClaims-NLP could help extract benefit timelines but doesn't address the core technical challenge of realistic skin progression visualization.
+
+Total Score: 12/20
+
+Feedback: This use case addresses a valid industry need but faces substantial feasibility challenges with the available assets. The most critical limitation is the insufficient clinical imagery dataset for training a reliable generative model - predictive visualization of skincare benefits requires extensive before/after documentation across diverse skin types and conditions. To improve feasibility, consider pivoting to a hybrid approach that combines actual clinical trial imagery with more modest personalization, rather than fully generative predictions. The business case would be strengthened by validating that visualization of progressive results (rather than immediate effects or ingredient education) would actually increase conversion rates for skincare products. Consider starting with a narrower scope focusing on a specific skin concern (e.g., acne) where before/after patterns might be more consistent and predictable.
 """
 
-RESEARCH_BASED_ON_FEEDBACK = """
-Generate search queries to gather information to improve the ai usecase for a given industry based on the feedback provided. Reason step by step and generate at most search queries.
-
-"""
 IMPROVE_USECASE_PROMPT = """
 You are an expert in Artificial Intelligence (AI), Machine Learning (ML), and Automation with deep knowledge of identifying high-impact, domain-specific use cases tailored to particular industries.
 
